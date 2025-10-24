@@ -162,3 +162,11 @@
     margin: 0;
   }
 }
+
+.app-heading {
+ color: #2359a7;
+ text-align: center;
+ font-size: 2.5rem;
+ font-weight: 700;
+ margin-bottom: 2rem;
+}

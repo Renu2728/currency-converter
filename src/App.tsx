@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import ConvertButton from "./components/ConvertSwap";
+import ConvertSwap from "./components/ConvertSwap";
 
 function App() {
   return (
     <div className="app-container">
-      <ConvertButton />
+      <h1 className="app-heading">Currency Converter</h1>
+      <ConvertSwap />
     </div>
   );
 }

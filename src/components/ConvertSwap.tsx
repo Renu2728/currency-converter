@@ -4,7 +4,7 @@ import CurrencyDropdown from "./CurrencyDropdown";
 import Timer from "./ResultDisplay";
 import { isValidAmount } from "../utils/validation";
 
-const ConvertButton: React.FC = () => {
+const ConvertSwap : React.FC = () => {
   const [amount, setAmount] = useState("");
   const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("");
@@ -125,4 +125,4 @@ const ConvertButton: React.FC = () => {
   );
 };
 
-export default ConvertButton;
+export default ConvertSwap;
