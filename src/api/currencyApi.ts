@@ -1,9 +1,13 @@
-export const fetchExchangeRates = async (base: string) => {
-  const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${base}`);
-  return response.json();
-};
+import axios from 'axios';
 
-export const fetchCurrencyNames = async () => {
-  const response = await fetch('https://openexchangerates.org/api/currencies.json');
-  return response.json();
-};
+const RATES_API = 'https://api.exchangerate-api.com/v4/latest';
+const CURRENCIES_API = 'https://openexchangerates.org/api/currencies.json';
+export const FLAG_API = 'https://flagcdn.com/w40/';
+
+
+export const fetchExchangeRates = (base: string) => 
+    axios.get(`${RATES_API}/${base}`).then(res => res.data);
+
+export const fetchCurrencyNames = () => 
+    axios.get(CURRENCIES_API).then(res => res.data);
+
