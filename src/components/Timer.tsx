@@ -34,3 +34,65 @@ const Timer: React.FC<TimerProps> = ({ onComplete }) => {
 };
 
 export default Timer;
+
+
+// import React, { useEffect, useRef, useState } from "react";
+
+// type Props = {
+//   seconds?: number;
+//   onExpire?: () => void;
+// };
+
+// export default function Timer({ seconds = 10, onExpire }: Props) {
+//   const [left, setLeft] = useState<number>(() => Math.max(0, Math.floor(seconds)));
+//   const calledRef = useRef(false);
+//   const intervalRef = useRef<number | null>(null);
+
+//   useEffect(() => {
+//     setLeft(Math.max(0, Math.floor(seconds)));
+//     calledRef.current = false;
+//   }, [seconds]);
+
+//   useEffect(() => {
+//     if (intervalRef.current != null) {
+//       clearInterval(intervalRef.current);
+//       intervalRef.current = null;
+//     }
+
+//     intervalRef.current = window.setInterval(() => {
+//       setLeft((prev) => {
+//         if (prev <= 1) {
+//           if (!calledRef.current) {
+//             calledRef.current = true;
+//             onExpire && onExpire();
+//           }
+//           if (intervalRef.current != null) {
+//             clearInterval(intervalRef.current);
+//             intervalRef.current = null;
+//           }
+//           return 0;
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => {
+//       if (intervalRef.current != null) {
+//         clearInterval(intervalRef.current);
+//         intervalRef.current = null;
+//       }
+//     };
+//   }, [onExpire]);
+
+//   const mm = String(Math.floor(left / 60)).padStart(2, "0");
+//   const ss = String(left % 60).padStart(2, "0");
+//   const text = `${mm}:${ss}`;
+
+//   return (
+//     <div>
+//       <p role="timer" style={{ margin: 0, color: "#666", fontWeight: 700 }}>
+//         {text}
+//       </p>
+//     </div>
+//   );
+// }

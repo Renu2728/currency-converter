@@ -3,6 +3,7 @@ import CurrencyDropdown from "./CurrencyDropdown";
 import Timer from "./Timer";
 import { isValidAmount } from "../utils";
 import { fetchExchangeRates } from "../api/currencyApi";
+
 const ConvertSwap: React.FC = () => {
   const [amount, setAmount] = useState("");
   const [from, setFrom] = useState("");
@@ -14,32 +15,38 @@ const ConvertSwap: React.FC = () => {
   const canConvert = validAmount && from && to;
   const handleAmount = (value: string) => {
     setAmount(value);
+
     setError(
       value && !isValidAmount(value) ? `${value} is not a valid number` : ""
     );
   };
+
   const handleSwap = () => {
     setFrom(to);
     setTo(from);
     setResult(null);
     setError("");
   };
+
   const handleConvert = async () => {
     if (!from || !to) {
       setError("Please select both currencies");
       return;
     }
+
     try {
       const data = await fetchExchangeRates(from);
       const rate = data.rates[to];
       if (!rate) throw new Error("Rate not available");
       setResult(parseFloat(amount) * rate);
       setTimerKey((prev) => prev + 1);
+
       setError("");
     } catch {
       setError("Unable to fetch exchange rates");
     }
   };
+
   return (
     <div className="card">
       <div className="input-container">
@@ -52,6 +59,7 @@ const ConvertSwap: React.FC = () => {
           aria-label="Amount to convert"
           aria-invalid={!!error}
         />
+
         {error && (
           <div className="amount-error" role="alert">
             {error}
@@ -84,6 +92,7 @@ const ConvertSwap: React.FC = () => {
       >
         Convert
       </button>
+
       {result !== null && (
         <div className="result-section">
           <p>
@@ -95,4 +104,5 @@ const ConvertSwap: React.FC = () => {
     </div>
   );
 };
+
 export default ConvertSwap;
